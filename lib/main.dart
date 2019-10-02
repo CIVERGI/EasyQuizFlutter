@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_guide/question.dart';
 
 void main() {
-  var myapp = MyApp();
-  runApp(myapp);
+  var myApp = MyApp();
+  runApp(myApp);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp>{ //<- Clase generica "State" / Investigar el puntero de <MyApp>
+  //_MyAppState es privada gracias al _
+  var _questionIndex = 0;
   
-  void answerQuestion(){
-    print("Answer Chosen");
+  void _answerQuestion(){
+    setState( () { //Buscar informacion mas concisa de set State
+    //Set state le dice a flutter que re construya (Re-build la UI) el widget desde donde se llamo (MyApp).
+      _questionIndex = _questionIndex + 1;
+    });
+    print(_questionIndex);
   }
   
   @override
   Widget build(BuildContext context) {
+
+    var questions = [
+      "Cual es tu color favorito?", 
+      "Cual es tu animal favorito?",];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -20,18 +41,25 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text("Primer pregunta!"),
+            Question(
+              questions[_questionIndex],
+              ),
             RaisedButton(
               child: Text("Respuesta 1"),
-              onPressed: answerQuestion, //<- Pointer
+              onPressed: (){ 
+                // Esto es una funcion anonima
+                // ...
+                print("Answer Chosen");
+
+              }, //<- Pointer
             ),
             RaisedButton(
               child: Text("Respuesta 2"),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion, //<- Pointer en vez de metodo()
             ),
             RaisedButton(
               child: Text("Respuesta 3"),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion, //<- Pointer en vez de metodo()
             ),
           ],
         ),
