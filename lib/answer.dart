@@ -4,8 +4,9 @@ import './main.dart';
 class Answer extends StatelessWidget {
 
   final Function selectHandler; //Almacenamos una funcion
+  final String answerText;
 
-  Answer(this.selectHandler);
+  Answer(this.selectHandler, this.answerText);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class Answer extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         color: Colors.blue, //Static property without instantiate classes 
-        //Es similar a ENUM pero en vez de numeros indicando los estados tenemos texto enendible por humano.
-
-        child: Text("Answer 1"),
+        //Es similar a ENUM pero en vez de numeros indicando los estados tenemos texto entendible por humano.
+        textColor: Colors.white,
+        child: Text(answerText),
         onPressed: selectHandler,
       ),
     );

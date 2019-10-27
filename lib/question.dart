@@ -12,8 +12,8 @@ class Question extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity, //width: es un named argument
-        margin: EdgeInsets.all(10),
+        width: double.infinity, //width: es un named argument, se hace tan grande como el padre
+        margin: EdgeInsets.all(10), //Cambia el valor de margin horizontal y vertical 
         child: Text(
           questionText,
           style: TextStyle(fontSize: 28),
